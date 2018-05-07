@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Firstname:</strong>
+  <%= @beast.firstname %>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @beast.lastname %>
+</p>
+
+<p>
+  <strong>Pseudo:</strong>
+  <%= @beast.pseudo %>
+</p>
+
+<p>
+  <strong>Degree:</strong>
+  <%= @beast.degree %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @beast.rating %>
+</p>
+
+<p>
+  <strong>Bio:</strong>
+  <%= @beast.bio %>
+</p>
+
+<%= link_to 'Edit', edit_beast_path(@beast) %> |
+<%= link_to 'Back', beasts_path %>

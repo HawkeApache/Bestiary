@@ -1,0 +1,47 @@
+<%= form_with(model: beast, local: true) do |form| %>
+  <% if beast.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(beast.errors.count, "error") %> prohibited this beast from being saved:</h2>
+
+      <ul>
+      <% beast.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :firstname %>
+    <%= form.text_field :firstname, id: :beast_firstname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lastname %>
+    <%= form.text_field :lastname, id: :beast_lastname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pseudo %>
+    <%= form.text_field :pseudo, id: :beast_pseudo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :degree %>
+    <%= form.text_field :degree, id: :beast_degree %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rating %>
+    <%= form.text_field :rating, id: :beast_rating %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bio %>
+    <%= form.text_area :bio, id: :beast_bio %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
