@@ -1,4 +1,4 @@
-<%= form_with(model: beast, local: true) do |form| %>
+<%= simple_form_for(beast) do |form| %>
   <% if beast.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(beast.errors.count, "error") %> prohibited this beast from being saved:</h2>
