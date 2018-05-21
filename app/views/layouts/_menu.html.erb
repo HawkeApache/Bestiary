@@ -1,0 +1,21 @@
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Bestiariusz</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <%= link_to (fa_icon "users", text: 'Bestie'), beasts_path %>
+        </li>
+        <li>
+          <%= link_to (fa_icon "users", text: 'Przedmioty'), subjects_path %>
+        </li>
+        <li>
+          <%= link_to (fa_icon "users", text: 'Ustawienia'), beasts_path %>
+        </li>
+      </ul>
+
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
