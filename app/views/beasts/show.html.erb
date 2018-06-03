@@ -30,5 +30,12 @@
   <%= @beast.bio %>
 </p>
 
+<% if @beast.image.attached? %>
+  <%= image_tag(@beast.image) %>
+<% else %>
+  <h3>brak obrazka</h3>
+<% end %>
+
+
 <%= link_to 'Edit', edit_beast_path(@beast) %> |
 <%= link_to 'Back', beasts_path %>

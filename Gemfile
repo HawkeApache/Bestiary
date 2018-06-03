@@ -7,7 +7,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.5'
+gem 'rails', '~> 5.2'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
@@ -61,3 +61,4 @@ gem 'font-awesome-rails'
 gem 'cancancan', '~> 2.1.4'
 gem 'simple_form', '~> 4.0', '>= 4.0.0'
 gem 'jquery-rails'
+
