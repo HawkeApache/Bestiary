@@ -37,5 +37,14 @@
 <% end %>
 
 
+<h1>FORM DO KOMENTAZRY</h1>
+
+<%= simple_form_for([@beast, @beast.comments.new]) do |f| %>
+  <%= f.input :message%>
+  <%= f.input :rate%>
+  <%= f.submit :submit%>
+<% end %>
+
+
 <%= link_to 'Edit', edit_beast_path(@beast) %> |
 <%= link_to 'Back', beasts_path %>

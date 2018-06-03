@@ -23,17 +23,37 @@ class CommentsController < ApplicationController
 
   # POST /comments
   # POST /comments.json
+  #
+  # todo add user to comment
   def create
-    @comment = Comment.new(comment_params)
+    if params[:beast_id]
+      @beast = Beast.find(params[:beast_id])
+      @comment = @beast.comments.new(comment_params)
 
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
-      else
-        format.html { render :new }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @comment.save
+          format.html { redirect_to @beast, notice: 'Comment was successfully created.' }
+          format.json { render :show, status: :created, location: @comment }
+        else
+          format.html { render :new }
+          format.json { render json: @comment.errors, status: :unprocessable_entity }
+        end
       end
+    elsif params[:subject_id]
+      @subject = Subject.find(params[:subject_id])
+      @comment = @subject.comments.new(comment_params)
+
+      respond_to do |format|
+        if @comment.save
+          format.html { redirect_to @subject, notice: 'Comment was successfully created.' }
+          format.json { render :show, status: :created, location: @comment }
+        else
+          format.html { render :new }
+          format.json { render json: @comment.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      puts "spierdoliło sie na amen"
     end
   end
 
@@ -53,6 +73,7 @@ class CommentsController < ApplicationController
 
   # DELETE /comments/1
   # DELETE /comments/1.json
+  # todo problems??
   def destroy
     @comment.destroy
     respond_to do |format|

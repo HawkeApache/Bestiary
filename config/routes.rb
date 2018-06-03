@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  resources :comments
-  resources :subjects
+  resources :subjects do
+    resources :comments, shallow: true
+  end
   resources :users
-  resources :beasts
+  resources :beasts do
+    resources :comments, shallow: true
+  end
 
   root 'main#index'
 

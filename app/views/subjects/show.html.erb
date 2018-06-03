@@ -20,5 +20,14 @@
   <%= @subject.rating %>
 </p>
 
+
+<h1>FORM DO KOMENTAZRY</h1>
+
+<%= simple_form_for([@subject, @subject.comments.new]) do |f| %>
+  <%= f.input :message%>
+  <%= f.input :rate%>
+  <%= f.submit :submit%>
+<% end %>
+
 <%= link_to 'Edit', edit_subject_path(@subject) %> |
 <%= link_to 'Back', subjects_path %>
