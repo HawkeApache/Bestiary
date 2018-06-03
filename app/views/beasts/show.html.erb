@@ -45,6 +45,11 @@
   <%= f.submit :submit%>
 <% end %>
 
+<h1>KOMENTARZE</h1>
+<div>
+  <%= render partial: "comment", collection: @beast.comments %>
+</div>
+
 
 <%= link_to 'Edit', edit_beast_path(@beast) %> |
 <%= link_to 'Back', beasts_path %>
