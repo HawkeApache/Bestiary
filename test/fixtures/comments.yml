@@ -5,9 +5,11 @@ one:
   message: MyText
   user: one
   beast: one
+  subject: one
 
 two:
   rate: 1.5
   message: MyText
   user: two
   beast: two
+  subject: two
