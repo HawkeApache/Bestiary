@@ -3,8 +3,8 @@ class Beast < ApplicationRecord
   has_and_belongs_to_many :subjects
 
 
-  validates :firstname, presence: true, length: { minimum: 2 , maximum: 255}
-  validates :lastname, presence: true, length: { minimum: 2 , maximum: 255}
+  validates :firstname, presence: true, length: {minimum: 2, maximum: 255}
+  validates :lastname, presence: true, length: {minimum: 2, maximum: 255}
   validates :degree, presence: true
 
 end
