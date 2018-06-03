@@ -26,6 +26,7 @@ class BeastsController < ApplicationController
   def create
     @beast = Beast.new(beast_params)
 
+
     respond_to do |format|
       if @beast.save
         format.html { redirect_to @beast, notice: 'Beast was successfully created.' }
@@ -69,6 +70,6 @@ class BeastsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def beast_params
-      params.require(:beast).permit(:firstname, :lastname, :pseudo, :degree, :rating, :bio)
+      params.require(:beast).permit(:firstname, :lastname, :pseudo, :degree, :rating, :bio, :image, :subject_ids => [])
     end
 end
