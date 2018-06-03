@@ -8,4 +8,8 @@ class Beast < ApplicationRecord
   validates :lastname, presence: true, length: {minimum: 2, maximum: 255}
   validates :degree, presence: true
 
+  def to_label
+    "#{firstname} #{lastname}"
+  end
+
 end

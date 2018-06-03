@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_03_113726) do
+ActiveRecord::Schema.define(version: 2018_06_03_155335) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -44,6 +44,11 @@ ActiveRecord::Schema.define(version: 2018_06_03_113726) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "beasts_subjects", force: :cascade do |t|
+    t.string "beast_id"
+    t.string "subject_id"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.float "rate"
     t.text "message"
@@ -55,11 +60,6 @@ ActiveRecord::Schema.define(version: 2018_06_03_113726) do
     t.index ["beast_id"], name: "index_comments_on_beast_id"
     t.index ["subject_id"], name: "index_comments_on_subject_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
-  end
-
-  create_table "join_subject_beasts", force: :cascade do |t|
-    t.string "beast"
-    t.string "subject"
   end
 
   create_table "subjects", force: :cascade do |t|

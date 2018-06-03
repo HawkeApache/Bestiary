@@ -70,6 +70,6 @@ class BeastsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def beast_params
-      params.require(:beast).permit(:firstname, :lastname, :pseudo, :degree, :rating, :bio, :image)
+      params.require(:beast).permit(:firstname, :lastname, :pseudo, :degree, :rating, :bio, :image, :subject_ids => [])
     end
 end
