@@ -49,19 +49,6 @@ ActiveRecord::Schema.define(version: 2018_06_03_155335) do
     t.string "subject_id"
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.float "rate"
-    t.text "message"
-    t.integer "user_id"
-    t.integer "beast_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "subject_id"
-    t.index ["beast_id"], name: "index_comments_on_beast_id"
-    t.index ["subject_id"], name: "index_comments_on_subject_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
-  end
-
   create_table "subjects", force: :cascade do |t|
     t.string "name"
     t.integer "ects"
