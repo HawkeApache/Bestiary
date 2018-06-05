@@ -7,7 +7,7 @@ class Ability
       can :manage, :all
       cannot [:update, :destroy, :create], [Subject, Beast]
     elsif user.admin?
-      can :manage
+      can :manage, :all
     end
   else
     can :create, User
