@@ -62,3 +62,4 @@ gem 'cancancan', '~> 2.1.4'
 gem 'simple_form', '~> 4.0', '>= 4.0.0'
 gem 'jquery-rails'
 
+gem 'devise'
