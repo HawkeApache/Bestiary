@@ -27,33 +27,43 @@ class CommentsController < ApplicationController
 
   # POST /comments
   # POST /comments.json
-  #
-  # todo add user to comment
+
   def create
-    if params[:beast_id]
+    if params[:beast_id] # add comment to beast
       @beast = Beast.find(params[:beast_id])
       @comment = @beast.comments.new(comment_params)
+      @comment.user_id = current_user.id
+
+      @new_rating = (@beast.comments.count * @beast.rating + @comment.rate) / (@beast.comments.count + 1)
+      @beast.rating = @new_rating
+      @beast.save
 
       respond_to do |format|
         if @comment.save
           format.html { redirect_to @beast, notice: 'Comment was successfully created.' }
-          format.json { render :show, status: :created, location: @comment }
         else
-          format.html { render :new }
-          format.json { render json: @comment.errors, status: :unprocessable_entity }
+          # todo chyba bedzie trza ogarnąć jakiegoś ajaxa
+          format.html { redirect_to @beast, alert: 'rate must be in 1-10' }
+          # format.html { render :new }
         end
       end
-    elsif params[:subject_id]
+
+
+    elsif params[:subject_id] # add comment to subject
       @subject = Subject.find(params[:subject_id])
       @comment = @subject.comments.new(comment_params)
+      @comment.user_id = current_user.id
+
+      @new_rating = (@subject.comments.count * @subject.rating + @comment.rate) / (@subject.comments.count + 1)
+      @subject.rating = @new_rating
+      @subject.save
 
       respond_to do |format|
         if @comment.save
           format.html { redirect_to @subject, notice: 'Comment was successfully created.' }
-          format.json { render :show, status: :created, location: @comment }
         else
           format.html { render :new }
-          format.json { render json: @comment.errors, status: :unprocessable_entity }
+          format.json { render json: @subject.errors, status: :unprocessable_entity }
         end
       end
     else
@@ -61,6 +71,8 @@ class CommentsController < ApplicationController
     end
   end
 
+
+  #todo updade i delete
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
@@ -77,7 +89,7 @@ class CommentsController < ApplicationController
 
   # DELETE /comments/1
   # DELETE /comments/1.json
-  # todo problems??
+  # todo problems with url??
   def destroy
     @comment.destroy
     respond_to do |format|
