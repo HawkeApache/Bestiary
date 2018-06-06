@@ -35,19 +35,18 @@ class CommentsController < ApplicationController
       @comment.user_id = current_user.id
 
       @new_rating = (@beast.comments.count * @beast.rating + @comment.rate) / (@beast.comments.count + 1)
-      @beast.rating = @new_rating
-      @beast.save
 
       respond_to do |format|
         if @comment.save
+          @beast.rating = @new_rating
+          @beast.save
           format.html { redirect_to @beast, notice: 'Comment was successfully created.' }
         else
           # todo chyba bedzie trza ogarnąć jakiegoś ajaxa
-          format.html { redirect_to @beast, alert: 'rate must be in 1-10' }
+          format.html { redirect_to @beast, alert: 'rate must be in range 1-10' }
           # format.html { render :new }
         end
       end
-
 
     elsif params[:subject_id] # add comment to subject
       @subject = Subject.find(params[:subject_id])
@@ -55,15 +54,15 @@ class CommentsController < ApplicationController
       @comment.user_id = current_user.id
 
       @new_rating = (@subject.comments.count * @subject.rating + @comment.rate) / (@subject.comments.count + 1)
-      @subject.rating = @new_rating
-      @subject.save
 
       respond_to do |format|
         if @comment.save
+          @subject.rating = @new_rating
+          @subject.save
           format.html { redirect_to @subject, notice: 'Comment was successfully created.' }
         else
-          format.html { render :new }
-          format.json { render json: @subject.errors, status: :unprocessable_entity }
+          format.html { redirect_to @subject, alert: 'rate must be in range 1-10' }
+          # format.html { render :new }
         end
       end
     else
@@ -72,17 +71,35 @@ class CommentsController < ApplicationController
   end
 
 
-  #todo updade i delete
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
-    respond_to do |format|
-      if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @comment }
-      else
-        format.html { render :edit }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+    @new_comment_rate = comment_params.fetch(:rate).to_i
+    if @comment.beast_id
+      @beast = Beast.find(@comment.beast_id)
+      @new_rating = (@beast.comments.count * @beast.rating - @comment.rate + @new_comment_rate) / (@beast.comments.count)
+
+      respond_to do |format|
+        if @comment.update(comment_params)
+          @beast.rating = @new_rating
+          @beast.save
+          format.html { redirect_to @beast, notice: 'Comment was successfully updated.' }
+        else
+          format.html { render :edit }
+        end
+      end
+    else
+      @subject = Subject.find(@comment.subject_id)
+      @new_rating = (@subject.comments.count * @subject.rating - @comment.rate.to_i + @new_comment_rate) / (@subject.comments.count)
+
+      respond_to do |format|
+        if @comment.update(comment_params)
+          @subject.rating = @new_rating
+          @subject.save
+          format.html { redirect_to @subject, notice: 'Comment was successfully updated.' }
+        else
+          format.html { render :edit }
+        end
       end
     end
   end
