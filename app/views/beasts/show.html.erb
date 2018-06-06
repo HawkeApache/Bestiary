@@ -50,6 +50,7 @@
   <%= render partial: "/comment", collection: @beast.comments %>
 </div>
 
-
-<%= link_to 'Edit', edit_beast_path(@beast) %> |
+<% if current_user.role == "admin" %>
+  <%= link_to 'Edit', edit_beast_path(@beast) %> |
+<% end %>
 <%= link_to 'Back', beasts_path %>
