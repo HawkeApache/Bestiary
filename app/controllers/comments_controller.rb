@@ -76,7 +76,7 @@ class CommentsController < ApplicationController
   def update
     @new_comment_rate = comment_params.fetch(:rate).to_i
     if @comment.beast_id
-      @beast = Beast.find(@comment.beast_id)
+      @beast = @comment.beast
       @new_rating = (@beast.comments.count * @beast.rating - @comment.rate + @new_comment_rate) / (@beast.comments.count)
 
       respond_to do |format|
@@ -89,7 +89,7 @@ class CommentsController < ApplicationController
         end
       end
     else
-      @subject = Subject.find(@comment.subject_id)
+      @subject = @comment.subject
       @new_rating = (@subject.comments.count * @subject.rating - @comment.rate.to_i + @new_comment_rate) / (@subject.comments.count)
 
       respond_to do |format|
@@ -106,12 +106,22 @@ class CommentsController < ApplicationController
 
   # DELETE /comments/1
   # DELETE /comments/1.json
-  # todo problems with url??
   def destroy
+    if @comment.beast_id
+      @beast = @comment.beast
+      @new_rating = (@beast.comments.count * @beast.rating - @comment.rate) / (@beast.comments.count - 1)
+      @beast.rating = @new_rating >= 0 ? @new_rating : 0
+      @beast.save
+    else
+      @subject = @comment.subject
+      @new_rating = (@subject.comments.count * @subject.rating - @comment.rate) / (@subject.comments.count - 1)
+      @subject.rating = @new_rating >= 0 ? @new_rating : 0
+      @subject.save
+    end
+
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to @beast || @subject, notice: 'Comment was successfully destroyed.' }
     end
   end
 
