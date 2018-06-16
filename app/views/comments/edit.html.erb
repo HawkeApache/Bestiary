@@ -2,5 +2,9 @@
 
 <%= render 'form', comment: @comment %>
 
-<%= link_to 'Show', @comment %> |
-<%= link_to 'Back', comments_path %>
+<% if @comment.beast%>
+  <%= link_to "wróc do bestii", @comment.beast %>
+<% else %>
+  <%= link_to "wróc do przedmiotu", @comment.subject %>
+<% end %>
+

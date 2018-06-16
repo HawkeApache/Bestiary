@@ -1,0 +1,12 @@
+<% if comment.id %>
+<div>
+  <p><%= comment.message %></p>
+  <h6><%= comment.rate %></h6>
+
+
+  <% if comment.user_id == current_user.id or current_user.role == "admin" %>
+    <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
+    <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <% end %>
+</div>
+<% end %>

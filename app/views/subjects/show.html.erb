@@ -32,8 +32,10 @@
 
 <h1>KOMENTARZE</h1>
 <div>
-  <%= render partial: "comment", collection: @subject.comments %>
+  <%= render partial: "/comment", collection: @subject.comments %>
 </div>
 
-<%= link_to 'Edit', edit_subject_path(@subject) %> |
+<% if current_user.role == "admin" %>
+  <%= link_to 'Edit', edit_subject_path(@subject) %> |
+<% end %>
 <%= link_to 'Back', subjects_path %>
