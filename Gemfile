@@ -65,3 +65,4 @@ gem 'jquery-rails'
 gem 'devise'
 
 gem 'file_validators'
+gem 'obscenity'

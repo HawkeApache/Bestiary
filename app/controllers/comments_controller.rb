@@ -43,7 +43,7 @@ class CommentsController < ApplicationController
           format.html { redirect_to @beast, notice: 'Comment was successfully created.' }
         else
           # todo chyba bedzie trza ogarnąć jakiegoś ajaxa
-          format.html { redirect_to @beast, alert: 'rate must be in range 1-10' }
+          format.html { redirect_to @beast, alert: 'rate must be in range 1-10 and message should not contains swearwords' }
           # format.html { render :new }
         end
       end
@@ -61,7 +61,7 @@ class CommentsController < ApplicationController
           @subject.save
           format.html { redirect_to @subject, notice: 'Comment was successfully created.' }
         else
-          format.html { redirect_to @subject, alert: 'rate must be in range 1-10' }
+          # format.html { redirect_to @subject, alert: 'rate must be in range 1-10' }
           # format.html { render :new }
         end
       end
