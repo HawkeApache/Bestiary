@@ -27,33 +27,42 @@ class CommentsController < ApplicationController
 
   # POST /comments
   # POST /comments.json
-  #
-  # todo add user to comment
+
   def create
-    if params[:beast_id]
+    if params[:beast_id] # add comment to beast
       @beast = Beast.find(params[:beast_id])
       @comment = @beast.comments.new(comment_params)
+      @comment.user_id = current_user.id
+
+      @new_rating = (@beast.comments.count * @beast.rating + @comment.rate) / (@beast.comments.count + 1)
 
       respond_to do |format|
         if @comment.save
+          @beast.rating = @new_rating
+          @beast.save
           format.html { redirect_to @beast, notice: 'Comment was successfully created.' }
-          format.json { render :show, status: :created, location: @comment }
         else
-          format.html { render :new }
-          format.json { render json: @comment.errors, status: :unprocessable_entity }
+          # todo chyba bedzie trza ogarnąć jakiegoś ajaxa
+          format.html { redirect_to @beast, alert: 'rate must be in range 1-10' }
+          # format.html { render :new }
         end
       end
-    elsif params[:subject_id]
+
+    elsif params[:subject_id] # add comment to subject
       @subject = Subject.find(params[:subject_id])
       @comment = @subject.comments.new(comment_params)
+      @comment.user_id = current_user.id
+
+      @new_rating = (@subject.comments.count * @subject.rating + @comment.rate) / (@subject.comments.count + 1)
 
       respond_to do |format|
         if @comment.save
+          @subject.rating = @new_rating
+          @subject.save
           format.html { redirect_to @subject, notice: 'Comment was successfully created.' }
-          format.json { render :show, status: :created, location: @comment }
         else
-          format.html { render :new }
-          format.json { render json: @comment.errors, status: :unprocessable_entity }
+          format.html { redirect_to @subject, alert: 'rate must be in range 1-10' }
+          # format.html { render :new }
         end
       end
     else
@@ -61,28 +70,58 @@ class CommentsController < ApplicationController
     end
   end
 
+
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
-    respond_to do |format|
-      if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @comment }
-      else
-        format.html { render :edit }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+    @new_comment_rate = comment_params.fetch(:rate).to_i
+    if @comment.beast_id
+      @beast = @comment.beast
+      @new_rating = (@beast.comments.count * @beast.rating - @comment.rate + @new_comment_rate) / (@beast.comments.count)
+
+      respond_to do |format|
+        if @comment.update(comment_params)
+          @beast.rating = @new_rating
+          @beast.save
+          format.html { redirect_to @beast, notice: 'Comment was successfully updated.' }
+        else
+          format.html { render :edit }
+        end
+      end
+    else
+      @subject = @comment.subject
+      @new_rating = (@subject.comments.count * @subject.rating - @comment.rate.to_i + @new_comment_rate) / (@subject.comments.count)
+
+      respond_to do |format|
+        if @comment.update(comment_params)
+          @subject.rating = @new_rating
+          @subject.save
+          format.html { redirect_to @subject, notice: 'Comment was successfully updated.' }
+        else
+          format.html { render :edit }
+        end
       end
     end
   end
 
   # DELETE /comments/1
   # DELETE /comments/1.json
-  # todo problems??
   def destroy
+    if @comment.beast_id
+      @beast = @comment.beast
+      @new_rating = (@beast.comments.count * @beast.rating - @comment.rate) / (@beast.comments.count - 1)
+      @beast.rating = @new_rating >= 0 ? @new_rating : 0
+      @beast.save
+    else
+      @subject = @comment.subject
+      @new_rating = (@subject.comments.count * @subject.rating - @comment.rate) / (@subject.comments.count - 1)
+      @subject.rating = @new_rating >= 0 ? @new_rating : 0
+      @subject.save
+    end
+
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to @beast || @subject, notice: 'Comment was successfully destroyed.' }
     end
   end
 

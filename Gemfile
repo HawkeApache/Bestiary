@@ -67,3 +67,5 @@ gem 'simple_form', '~> 4.0', '>= 4.0.0'
 gem 'jquery-rails'
 
 gem 'devise'
+
+gem 'file_validators'

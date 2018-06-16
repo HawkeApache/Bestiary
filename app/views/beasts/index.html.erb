@@ -23,8 +23,10 @@
         <td><%= beast.rating %></td>
         <td><%= beast.bio %></td>
         <td><%= link_to 'Show', beast %></td>
-        <td><%= link_to 'Edit', edit_beast_path(beast) %></td>
-        <td><%= link_to 'Destroy', beast, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.role == "admin" %>
+          <td><%= link_to 'Edit', edit_beast_path(beast) %></td>
+          <td><%= link_to 'Destroy', beast, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -32,4 +34,6 @@
 
 <br>
 
-<%= link_to 'New Beast', new_beast_path %>
+<% if current_user.role == "admin" %>
+  <%= link_to 'New Beast', new_beast_path %>
+<% end %>

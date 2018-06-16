@@ -19,8 +19,10 @@
         <td><%= subject.description %></td>
         <td><%= subject.rating %></td>
         <td><%= link_to 'Show', subject %></td>
-        <td><%= link_to 'Edit', edit_subject_path(subject) %></td>
-        <td><%= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user.role == "admin" %>
+          <td><%= link_to 'Edit', edit_subject_path(subject) %></td>
+          <td><%= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +30,6 @@
 
 <br>
 
-<%= link_to 'New Subject', new_subject_path %>
+<% if current_user.role == "admin" %>
+  <%= link_to 'New Subject', new_subject_path %>
+<% end %>

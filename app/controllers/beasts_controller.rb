@@ -29,6 +29,7 @@ class BeastsController < ApplicationController
   # POST /beasts.json
   def create
     @beast = Beast.new(beast_params)
+    @beast.rating = 0
 
 
     respond_to do |format|
