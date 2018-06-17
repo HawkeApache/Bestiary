@@ -1,12 +1,12 @@
-<h1>Users</h1>
+<h1>Użytkownicy</h1>
 
 <table class="table">
   <thead>
     <tr>
-      <th>Firstname</th>
-      <th>Lastname</th>
-      <th>Displayname</th>
-      <th>Role</th>
+      <th>Imię</th>
+      <th>Nazwisko</th>
+      <th>Login</th>
+      <th>Rola</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,14 +18,11 @@
         <td><%= user.lastname %></td>
         <td><%= user.displayname %></td>
         <td><%= user.role %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Pokaż', user %></td>
+        <td><%= link_to 'Edytuj', edit_user_path(user) %></td>
+        <td><%= link_to 'Usuń', user, method: :delete, data: { confirm: 'Na pewno chcesz usunąć tego użytkownika?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New User', new_user_path %>

@@ -870,6 +870,16 @@ pre code {
 .container {
     margin-top: 5em;
 }
+.beast-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.beast-photo {
+    width: 250px;
+    height: 250px;
+}
 
 @media (min-width: 576px) {
   .col-sm {
