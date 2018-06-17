@@ -6,7 +6,7 @@
     </div>
     <p class="mb-1"><%= comment.message %></p>
 
-    <% if comment.user_id == current_user.id or current_user.role == "admin" %>
+    <% if can? :manage, comment %>
       <p class="pull-right comment-links">
         <%= link_to 'Edytuj', edit_comment_path(comment) %>
         <%= link_to 'Usuń', comment, method: :delete, data: {confirm: 'Na pewno chcesz usunąć ten komentarz?'} %>

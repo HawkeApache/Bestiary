@@ -22,7 +22,7 @@
       <td><%= subject.ects %></td>
       <td><%= subject.rating %></td>
       <td><%= link_to 'Pokaż', subject %></td>
-      <% if current_user.role == "admin" %>
+      <% if can? :update, subject %>
         <td><%= link_to 'Edytuj', edit_subject_path(subject) %></td>
         <td><%= link_to 'Usuń', subject, method: :delete, data: {confirm: 'Na pewno?'} %></td>
       <% end %>

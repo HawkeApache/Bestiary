@@ -49,7 +49,7 @@
 
 <hr class="my-4">
 
-<% if current_user.role == "admin" %>
+<% if can? :update, @subject %>
   <%= link_to 'Edytuj', edit_subject_path(@subject) %> |
 <% end %>
 <%= link_to 'Powrót', subjects_path %>
