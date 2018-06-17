@@ -138,7 +138,10 @@ pl:
             displayname:
               blank: " - pole nie może być puste"
               too_short: " podany login jest za krótki"
-
+            current_password:
+              blank: "wpisz aktualne hasło"
+            password_confirmation:
+              confirmation: "Hasła nie są takie same"
             firstname:
               blank: " - pole nie może być puste"
               too_short: " podane imię jest za krótkie"
