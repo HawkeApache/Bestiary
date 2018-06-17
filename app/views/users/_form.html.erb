@@ -26,12 +26,10 @@
     <%= form.text_field :displayname, id: :user_displayname %>
   </div>
 
-  <% if current_user.role == "admin" %>
-    <div class="field">
-      <%= form.label :role %>
-      <%= form.text_field :role, id: :user_role %>
-    </div>
-  <% end %>
+  <div class="field">
+    <%= form.label :role %>
+    <%= form.text_field :role, id: :user_role %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>
