@@ -42,9 +42,7 @@ class CommentsController < ApplicationController
           @beast.save
           format.html { redirect_to @beast, notice: 'Komentarz został dodany' }
         else
-          # todo chyba bedzie trza ogarnąć jakiegoś ajaxa
-          format.html { redirect_to @beast, alert: 'Wystąpił błąd' }
-          # format.html { render :new }
+          format.html { redirect_to @beast, alert: 'Komentarz NIE może zawierać przekleństw!' }
         end
       end
 
@@ -61,12 +59,9 @@ class CommentsController < ApplicationController
           @subject.save
           format.html { redirect_to @subject, notice: 'Komentarz został dodany' }
         else
-          format.html { redirect_to @subject, alert: 'Wystąpił błąd' }
-          # format.html { render :new }
+          format.html { redirect_to @subject, alert: 'Komentarz NIE może zawierać przekleństw!' }
         end
       end
-    else
-      puts "Unhandled error"
     end
   end
 

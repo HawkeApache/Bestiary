@@ -57,7 +57,7 @@
   </div>
 <% end %>
 <div>
-  <%= render partial: "/comment", collection: @beast.comments %>
+  <%= render partial: "/comment", collection: @beast.comments.reverse %>
 </div>
 
 <hr class="my-4">

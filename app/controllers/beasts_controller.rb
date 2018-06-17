@@ -31,6 +31,10 @@ class BeastsController < ApplicationController
     @beast = Beast.new(beast_params)
     @beast.rating = 0
 
+    unless @beast.image.attached?
+      @beast.image.attach(io: File.open(Rails.root.join('av.jpg')), filename: 'av.jpg')
+    end
+
 
     respond_to do |format|
       if @beast.save
