@@ -36,7 +36,7 @@
   <div class="row">
     <div class="form-group col-md-8">
       <%= form.label :prowadzący %><br/>
-      <%= form.association :beasts, :label => false, :as => :check_boxes %>
+      <%= form.association :beasts, :label => false, :as => :check_boxes, :item_wrapper_tag => :div %>
     </div>
   </div>
 

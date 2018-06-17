@@ -1,5 +1,5 @@
 <% if current_user.role == "admin" %>
-  <%= link_to 'Dodaj nową bestię', new_beast_path, :class => "btn btn-lg btn-primary pull-right" %>
+  <%= link_to 'Dodaj nową bestię', new_beast_path, :class => "btn btn-lg btn-secondary pull-right" %>
 <% end %>
 
 <h1>Spis bestii</h1>
@@ -25,9 +25,9 @@
       <td><%= beast.pseudo %></td>
       <td><%= beast.rating.round(2) %></td>
       <td><%= link_to 'Pokaż', beast, :class => "navigation-link" %></td>
-      <% if current_user.role == "admin" %>
+      <% if can? :manage, beast %>
         <td><%= link_to 'Edytuj', edit_beast_path(beast), :class => "navigation-link" %></td>
-        <td><%= link_to 'Usuń', beast, method: :delete, data: {confirm: 'Are you sure?'}, :class => "navigation-link" %></td>
+        <td><%= link_to 'Usuń', beast, method: :delete, data: {confirm: 'Na pewno chcesz usunąć te bestie?'}, :class => "navigation-link" %></td>
       <% end %>
     </tr>
   <% end %>
