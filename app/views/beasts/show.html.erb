@@ -63,7 +63,7 @@
 <hr class="my-4">
 
 <div class="center">
-<% if current_user.role == "admin" %>
+<% if can? :update, @beast %>
   <%= link_to 'Edytuj', edit_beast_path(@beast) %> |
 <% end %>
 <%= link_to 'Powrót', beasts_path %>
