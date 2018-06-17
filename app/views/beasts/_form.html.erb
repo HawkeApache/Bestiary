@@ -47,7 +47,7 @@
   </div>
 
   <%= form.label :prowadzone_przedmioty %>
-  <%= form.association :subjects, :label => false, :as => :check_boxes %>
+  <%= form.association :subjects, :label => false, :as => :check_boxes, :item_wrapper_tag => :div %>
 
   <div class="actions">
     <%= form.button :submit , "Zapisz" %>
