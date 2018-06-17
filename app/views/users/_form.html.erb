@@ -32,12 +32,14 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="form-group col-md-8">
-      <%= form.label :rola %><br>
-      <%= form.select :role, options_for_select(['admin', 'client']), id: :user_role %>
+  <% if current_user.role == "admin" %>
+    <div class="row">
+      <div class="form-group col-md-8">
+      <%= form.label :rol %>
+        <%= form.select :role, options_for_select(['admin', 'client']), id: :user_role %>
     </div>
-  </div>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= form.button :submit, "Zapisz" %>

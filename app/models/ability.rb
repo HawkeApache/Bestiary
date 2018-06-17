@@ -8,7 +8,7 @@ class Ability
       can :read, [Beast, Subject]
       cannot %i[update destroy create], [Subject, Beast]
       cannot :read, User
-      can %i[update destroy], User, user_id: user.id
+      can %i[update destroy], User, id: user.id
     elsif user.admin?
       can :manage, :all
     end
