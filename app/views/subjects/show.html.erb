@@ -44,7 +44,7 @@
   </div>
 <% end %>
 <div>
-  <%= render partial: "/comment", collection: @subject.comments %>
+  <%= render partial: "/comment", collection: @subject.comments.reverse %>
 </div>
 
 <hr class="my-4">
