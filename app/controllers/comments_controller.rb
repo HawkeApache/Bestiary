@@ -40,10 +40,10 @@ class CommentsController < ApplicationController
         if @comment.save
           @beast.rating = @new_rating
           @beast.save
-          format.html { redirect_to @beast, notice: 'Comment was successfully created.' }
+          format.html { redirect_to @beast, notice: 'Komentarz został dodany' }
         else
           # todo chyba bedzie trza ogarnąć jakiegoś ajaxa
-          format.html { redirect_to @beast, alert: 'rate must be in range 1-10 and message should not contains swearwords' }
+          format.html { redirect_to @beast, alert: 'Wystąpił błąd' }
           # format.html { render :new }
         end
       end
@@ -59,14 +59,14 @@ class CommentsController < ApplicationController
         if @comment.save
           @subject.rating = @new_rating
           @subject.save
-          format.html { redirect_to @subject, notice: 'Comment was successfully created.' }
+          format.html { redirect_to @subject, notice: 'Komentarz został dodany' }
         else
-          # format.html { redirect_to @subject, alert: 'rate must be in range 1-10' }
+          format.html { redirect_to @subject, alert: 'Wystąpił błąd' }
           # format.html { render :new }
         end
       end
     else
-      puts "spierdoliło sie na amen"
+      puts "Unhandled error"
     end
   end
 
@@ -83,7 +83,7 @@ class CommentsController < ApplicationController
         if @comment.update(comment_params)
           @beast.rating = @new_rating
           @beast.save
-          format.html { redirect_to @beast, notice: 'Comment was successfully updated.' }
+          format.html { redirect_to @beast, notice: 'Zmiany zostały zapisane' }
         else
           format.html { render :edit }
         end
@@ -96,7 +96,7 @@ class CommentsController < ApplicationController
         if @comment.update(comment_params)
           @subject.rating = @new_rating
           @subject.save
-          format.html { redirect_to @subject, notice: 'Comment was successfully updated.' }
+          format.html { redirect_to @subject, notice: 'Zmiany zostały zapisane' }
         else
           format.html { render :edit }
         end
@@ -121,7 +121,7 @@ class CommentsController < ApplicationController
 
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to @beast || @subject, notice: 'Comment was successfully destroyed.' }
+      format.html { redirect_to @beast || @subject, notice: 'Komentarz został usunięty' }
     end
   end
 
