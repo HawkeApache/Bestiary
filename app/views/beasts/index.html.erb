@@ -1,39 +1,35 @@
-<h1>Beasts</h1>
+<% if current_user.role == "admin" %>
+  <%= link_to 'Dodaj nową bestię', new_beast_path, :class => "btn btn-lg btn-primary pull-right" %>
+<% end %>
+
+<h1>Spis bestii</h1>
 
 <table class="table">
   <thead>
-    <tr>
-      <th>Firstname</th>
-      <th>Lastname</th>
-      <th>Pseudo</th>
-      <th>Degree</th>
-      <th>Rating</th>
-      <th>Bio</th>
-      <th colspan="3"></th>
-    </tr>
+  <tr>
+    <th>Stopień</th>
+    <th>Imię</th>
+    <th>Nazwisko</th>
+    <th>Pseudo</th>
+    <th>Ocena</th>
+    <th colspan="3"></th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @beasts.each do |beast| %>
-      <tr>
-        <td><%= beast.firstname %></td>
-        <td><%= beast.lastname %></td>
-        <td><%= beast.pseudo %></td>
-        <td><%= beast.degree %></td>
-        <td><%= beast.rating %></td>
-        <td><%= beast.bio %></td>
-        <td><%= link_to 'Show', beast %></td>
-        <% if current_user.role == "admin" %>
-          <td><%= link_to 'Edit', edit_beast_path(beast) %></td>
-          <td><%= link_to 'Destroy', beast, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
+  <% @beasts.each do |beast| %>
+    <tr>
+      <td><%= beast.degree %></td>
+      <td><%= beast.firstname %></td>
+      <td><%= beast.lastname %></td>
+      <td><%= beast.pseudo %></td>
+      <td><%= beast.rating.round(2) %></td>
+      <td><%= link_to 'Pokaż', beast, :class => "navigation-link" %></td>
+      <% if current_user.role == "admin" %>
+        <td><%= link_to 'Edytuj', edit_beast_path(beast), :class => "navigation-link" %></td>
+        <td><%= link_to 'Usuń', beast, method: :delete, data: {confirm: 'Are you sure?'}, :class => "navigation-link" %></td>
+      <% end %>
+    </tr>
+  <% end %>
   </tbody>
 </table>
-
-<br>
-
-<% if current_user.role == "admin" %>
-  <%= link_to 'New Beast', new_beast_path %>
-<% end %>

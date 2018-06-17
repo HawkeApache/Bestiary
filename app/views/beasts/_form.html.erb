@@ -1,54 +1,55 @@
 <%= simple_form_for(beast) do |form| %>
   <% if beast.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(beast.errors.count, "error") %> prohibited this beast from being saved:</h2>
+      <h2>Wystąpily następujące błędy</h2>
 
       <ul>
-      <% beast.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% beast.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="field">
-    <%= form.label :image%>
+    <%= form.label :zdjęcie %>
     <%= form.file_field :image %>
   </div>
 
   <div class="field">
-    <%= form.label :firstname %>
+    <%= form.label :imię %> <br>
     <%= form.text_field :firstname, id: :beast_firstname %>
   </div>
 
   <div class="field">
-    <%= form.label :lastname %>
+    <%= form.label :nazwisko %> <br>
     <%= form.text_field :lastname, id: :beast_lastname %>
   </div>
 
   <div class="field">
-    <%= form.label :pseudo %>
+    <%= form.label :pseudo %> <br>
     <%= form.text_field :pseudo, id: :beast_pseudo %>
   </div>
 
   <div class="field">
-    <%= form.label :degree %>
-    <%= form.text_field :degree, id: :beast_degree %>
+    <%= form.label :stopień %> <br>
+    <%= form.select :degree, ['mgr', 'dr', 'dr hab.', 'prof.'], id: :beast_degree %>
   </div>
 
   <div class="field">
-    <%= form.label :rating %>
+    <%= form.label :rating %> <br>
     <%= form.text_field :rating, id: :beast_rating %>
   </div>
 
   <div class="field">
-    <%= form.label :bio %>
+    <%= form.label :opis %> <br>
     <%= form.text_area :bio, id: :beast_bio %>
   </div>
 
-  <%= form.association :subjects %>
+  <%= form.label :prowadzone_przedmioty %>
+  <%= form.association :subjects, :label => false, :as => :check_boxes %>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.button :submit , "Zapisz" %>
   </div>
 <% end %>
