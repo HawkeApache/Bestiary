@@ -1,15 +1,42 @@
-<h1>Bestiariusz</h1>
+<div class="jumbotron">
+  <h1 class="display-3">Bestiariusz</h1>
+  <p class="lead">Poznaj wszystkie bestie na Wydziale Magii i Imaginacji</p>
+  <hr class="my-4">
 
-<h3>Najwyżej oceniane bestie:</h3>
-<% @top_beasts.each do |beast| %>
-  <h5><%= beast.firstname %> <%= beast.lastname %> :<%= beast.rating %></h5>
-<% end %>
+  <div class="cards-div">
+    <div class="card border-primary mb-2" style="max-width: 20rem;">
+      <div class="card-header">Rozdział 1</div>
+      <div class="card-body">
+        <h4 class="card-title">Bestie</h4>
+        <p class="card-text">Zbiór wszystkich bestii zaobserwowanych w ich środowisku naturalnym wraz z oceną zachowania
+          oraz najczęstszymi miejscami występowania</p>
+        <p class="card-btn">
+          <a class="btn btn-secondary pull-right" href="/beasts" role="button">Więcej</a>
+        </p>
+      </div>
+    </div>
 
-<h3>Najlepsze przedmioty:</h3>
-<% @top_subjects.each do |subject| %>
-  <h5><%= subject.name %></h5>
-<% end %>
+    <div class="card border-primary mb-2" style="max-width: 20rem;">
+      <div class="card-header">Rozdział 2</div>
+      <div class="card-body">
+        <h4 class="card-title">Przedmioty</h4>
+        <p class="card-text">Zbiór specjalności bestii wraz z warunkami zaliczenia, ilością magicznych punktów ECTS oraz
+          opiniami śmiałków, którzy już się z nimi zmierzyli.</p>
+        <p class="card-btn">
+          <a class="btn btn-secondary pull-right" href="/subjects" role="button">Więcej</a>
+        </p>
+      </div>
+    </div>
 
 
-<h3>Ostatnie wpisy:</h3>
+    <div class="card border-primary mb-2" style="max-width: 20rem;">
+      <div class="card-header">Rozdział 3</div>
+      <div class="card-body">
+        <h4 class="card-title">Kontakt</h4>
+        <p class="card-text">Jeśli widzisz jakieś błędy na stronie, chciałbyś zgłosić poprawki lub po prostu coś nam przekazać napisz na adres bestiariusz@gmail.com</p>
+      </div>
+    </div>
+  </div>
+</div>
 
+</div>

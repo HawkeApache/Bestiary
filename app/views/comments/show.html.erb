@@ -1,27 +1,10 @@
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%= notice %></p>-->
 
-<p>
-  <strong>Rate:</strong>
-  <%= @comment.rate %>
-</p>
-
-<p>
-  <strong>Message:</strong>
-  <%= @comment.message %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @comment.user %>
-</p>
-
-<p>
-  <strong>Beast:</strong>
-  <%= @comment.beast %>
-</p>
-
-<p>
-  <strong>Subject:</strong>
-  <%= @comment.subject %>
-</p>
-
+<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1"> <%= @comment.rate %></h5>
+    <small class="text-muted">  <%= @comment.user %></small>
+  </div>
+  <p class="mb-1"><%= @comment.message %></p>
+  <small class="text-muted"><%= @comment.subject %></small>
+</a>
