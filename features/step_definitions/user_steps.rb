@@ -46,3 +46,15 @@ When("I sign in with a wrong password") do
   fill_in "user_password", with: "invalidpasswd"
   click_on "Zaloguj"
 end
+
+
+Given("I exist as an Admin") do
+  @admin = FactoryBot.create(:user, email: 'admin@admin.com', role: 'admin')
+end
+
+Given("I sign in with valid credentials as Admin") do
+  visit '/users/sign_in'
+  fill_in "user_email", with: 'admin@admin.com'
+  fill_in "user_password", with: "passwd123"
+  click_on "Zaloguj"
+end

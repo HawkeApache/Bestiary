@@ -70,3 +70,4 @@ gem 'devise'
 
 gem 'file_validators'
 gem 'obscenity'
+gem 'faker'
