@@ -1,56 +1,70 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Firstname:</strong>
-  <%= @beast.firstname %>
-</p>
-
-<p>
-  <strong>Lastname:</strong>
-  <%= @beast.lastname %>
-</p>
-
-<p>
-  <strong>Pseudo:</strong>
-  <%= @beast.pseudo %>
-</p>
-
-<p>
-  <strong>Degree:</strong>
-  <%= @beast.degree %>
-</p>
-
-<p>
-  <strong>Rating:</strong>
-  <%= @beast.rating %>
-</p>
-
-<p>
-  <strong>Bio:</strong>
-  <%= @beast.bio %>
-</p>
-
-<% if @beast.image.attached? %>
-  <%= image_tag(@beast.image) %>
-<% else %>
-  <h3>brak obrazka</h3>
+<% if notice %>
+  <div class="alert alert-success">
+    <div class="notice">
+      <%= notice %>
+    </div>
+  </div>
 <% end %>
 
 
-<h1>FORM DO KOMENTAZRY</h1>
 
-<%= simple_form_for([@beast, @beast.comments.new]) do |f| %>
-  <%= f.input :message%>
-  <%= f.input :rate%>
-  <%= f.submit :submit%>
-<% end %>
 
-<h1>KOMENTARZE</h1>
-<div>
-  <%= render partial: "/comment", collection: @beast.comments %>
+<div class="jumbotron">
+
+  <div class="beast-card">
+    <% if @beast.image.attached? %>
+      <%= image_tag(@beast.image, :class => "beast-photo") %>
+    <% else %>
+      <h3>brak obrazka</h3>
+    <% end %>
+    <div class="beast-info">
+      <h1 class="display-3 align-content-center"><%= @beast.degree %> <%= @beast.firstname %> <%= @beast.lastname %></h1>
+      <h1>( <%= @beast.pseudo %> )</h1>
+      <h4>Ocena użytkowników: <%= @beast.rating.round(2) %></h4>
+    </div>
+  </div>
+  <hr class="my-4">
+  <h4>Przedmioty</h4>
+  <% @beast.subjects.each do |s| %>
+    <p class="badge badge-secondary">
+      <%= link_to s.name, '/subjects/'+s.id.to_s %>
+    </p>
+  <% end %>
+  <hr class="my-4">
+  <p> <%= @beast.bio %> </p>
 </div>
 
-<% if current_user.role == "admin" %>
-  <%= link_to 'Edit', edit_beast_path(@beast) %> |
+
+
+<h2 class="display-3">Opinie</h2>
+<h4 class="display-5"> Dodaj swoją opinię </h4>
+<%= simple_form_for([@beast, @beast.comments.new]) do |f| %>
+
+  <div class="row">
+    <div class="form-group col-md-1">
+      <%= f.label :ocena %><br/>
+      <%= f.number_field :rate, autofocus: true, class: "form-control", in: 1.0..10.0 %>
+    </div>
+
+    <div class="form-group col-md-11">
+      <%= f.label :Opinia %><br/>
+      <%= f.text_field :message, autofocus: true, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Dodaj" %>
+  </div>
 <% end %>
-<%= link_to 'Back', beasts_path %>
+<div>
+  <%= render partial: "/comment", collection: @beast.comments.reverse %>
+</div>
+
+<hr class="my-4">
+
+<div class="center">
+<% if can? :update, @beast %>
+  <%= link_to 'Edytuj', edit_beast_path(@beast) %> |
+<% end %>
+<%= link_to 'Powrót', beasts_path %>
+</div>

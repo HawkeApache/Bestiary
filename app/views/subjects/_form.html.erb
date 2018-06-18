@@ -1,39 +1,47 @@
 <%= simple_form_for(subject) do |form| %>
   <% if subject.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(subject.errors.count, "error") %> prohibited this subject from being saved:</h2>
+      <h2>Wystąpiły następujące błędy</h2>
 
       <ul>
-      <% subject.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% subject.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :subject_name %>
+  <div class="row">
+    <div class="form-group col-md-8">
+      <%= form.label :nazwa %><br/>
+      <%= form.text_field :name, id: :subject_name %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :ects %>
-    <%= form.number_field :ects, id: :subject_ects %>
+  <div class="row">
+    <div class="form-group col-md-8">
+      <%= form.label :ects %><br/>
+      <%= form.number_field :ects, id: :subject_ects %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description, id: :subject_description %>
+
+  <div class="row">
+    <div class="form-group col-md-8">
+      <%= form.label :opis %><br/>
+      <%= form.text_area :description, id: :subject_description %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :rating %>
-    <%= form.text_field :rating, id: :subject_rating %>
+  <div class="row">
+    <div class="form-group col-md-8">
+      <%= form.label :prowadzący %><br/>
+      <%= form.association :beasts, :label => false, :as => :check_boxes, :item_wrapper_tag => :div %>
+    </div>
   </div>
-
-  <%= form.association :beasts %>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.button :submit , "Zapisz" %>
   </div>
+
 <% end %>

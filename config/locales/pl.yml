@@ -1,0 +1,155 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+pl:
+  errors:
+    messages:
+      not_found: "nie znaleziono"
+      already_confirmed: "już został aktywowany"
+      not_locked: "nie był zablokowany"
+
+  devise:
+    failure:
+      unauthenticated: 'Musisz się zalogować lub zarejestrować aby kontynuować.'
+      unconfirmed: 'Musisz najpierw aktywować swoje konto aby kontynuować.'
+      locked: 'Twoje konto jest zablokowane.'
+      invalid: 'Niepoprawny email lub hasło.'
+      invalid_token: 'Niepoprawny token autentykujący.'
+      timeout: 'Twoja sesja wygasła, zaloguj się ponownie aby kontynuować.'
+      inactive: 'Twoje konto nie zostało jeszcze aktywowane.'
+    sessions:
+      signed_in: 'Użytkownik został zalogowany.'
+      signed_out: 'Użytkownik został wylogowany.'
+    passwords:
+      send_instructions: 'Wkrótce powinieneś otrzymać email z instrukcją jak ustawić nowe hasło.'
+      updated: 'Twoje hasło zostało zmienione. Jesteś już zalogowany.'
+    confirmations:
+      send_instructions: 'Wkrótce powinieneś otrzymać email z instrukcją jak aktywować swoje konto.'
+      confirmed: 'Twoje konto zostało aktywowane. Jesteś już zalogowany.'
+    registrations:
+      signed_up: 'Rejestracja zakończyła się sukcesem. Link aktywacyjny został wysłany na twój adres e-mail (jeśli włączone).'
+      updated: 'Twoje konto zostało pomyślnie zaktualizowane.'
+      destroyed: 'Papa! Twoje konto zostało usunięte. Mamy nadzieję, że spotkamy się jeszcze kiedyś!'
+    unlocks:
+      send_instructions: 'Wkrótce powinieneś otrzymać email z instrukcją jak odblokować swoje konto.'
+      unlocked: 'Twoje konto zostało odblokowane. Jesteś już zalogowany.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Instrukcja aktywacji konta'
+      reset_password_instructions:
+        subject: 'Instrukcja ustawienia nowego hasła'
+      unlock_instructions:
+        subject: 'Instrukcja odblokowania konta'
+  devise:
+    confirmations:
+      confirmed: "Twoje konto zostało aktywowane. Zostałeś pomyślnie zalogowany."
+      send_instructions: "Za chwilę otrzymasz email z instrukcją jak aktywować konto."
+      send_paranoid_instructions: "Jeśli Twój adres email istnieje w naszej bazie, za chwilę powinieneś otrzymać instrukcję jak aktywować konto."
+    failure:
+      already_authenticated: "Jesteś aktualnie zalogowany."
+      inactive: "Twoje konto nie zostało jeszcze aktywowane."
+      invalid: "Błędny adres email lub hasło."
+      invalid_token: "Błędny token aktywacyjny."
+      locked: "Twoje konto jest zablokowane."
+      not_found_in_database: "Błędny adres email lub hasło."
+      timeout: "Sesja wygasła, zaloguj się ponownie by kontynuować."
+      unauthenticated: "Aby kontynuować musisz się zalogować."
+      unconfirmed: "Aby kontynuować musisz aktywować swoje konto."
+    mailer:
+      confirmation_instructions:
+        subject: "Instrukcja aktywacji konta"
+      reset_password_instructions:
+        subject: "Instrukcja zresetowania hasła."
+      unlock_instructions:
+        subject: "Instrukcja odblokowania konta"
+    omniauth_callbacks:
+      failure: "Logowanie przez konto %{kind} zakończyło się błędem: \"%{reason}\"."
+      success: "Zalogowałeś się pomyślnie przez konto %{kind}."
+    passwords:
+      no_token: "Dostęp do tej strony jest możliwy jedynie poprzez użycie prawidłowego adresu z emaila z instrukcjami o resecie hasłą. Jeżeli właśnie skorzystałeś z tego adresu, sprawdź czy użyty adres jest zgodny z tym w emailu."
+      send_instructions: "Za chwilę otrzymasz emaila z instrukcją jak zresetować hasło."
+      send_paranoid_instructions: "Jeżeli Twój adres istnieje w naszej bazie, otrzymasz za chwilę emaila z instrukcją zmiany hasła."
+      updated: "Twoje hasło zostało zmienione. Zostałeś pomyślnie zalogowany."
+      updated_not_active: "Twoje hasło zostało zmienione."
+    registrations:
+      destroyed: "Do widzenia! Twoje konto zostało usunięte."
+      signed_up: "Witaj! Zarejestrowałeś się pomyślnie."
+      signed_up_but_inactive: "Zarejestrowałeś się pomyślnie. Niemniej jednak nie zostałeś zalogowany, ponieważ Twoje konto nie zostało jeszcze aktywowane."
+      signed_up_but_locked: "Zarejestrowałeś się pomyślnie. Niemniej jednak nie zostałeś zalogowany, ponieważ Twoje konto zostało zablokowane."
+      signed_up_but_unconfirmed: "Wiadomość email z instrukcją aktywacji konta została przesłana na Twój adres email. Użj linku z emaila aby aktywować konto."
+      update_needs_confirmation: "Konto zostało zaktualizowane. Niemniej jednak przed wprowadzeniem zmian musimy potwierdzić Twój nowy adres email. Za chwilę wyślemy instrukcję na nowy adres."
+      updated: "Konto zostało pomyślnie zaktualizowane."
+    sessions:
+      user:
+        signed_in: "Zostałeś zalogowany."
+        signed_out: "Zostałeś wylogowany."
+    unlocks:
+      send_instructions: "Za chwilę otrzymasz wiadomość email z instrukcją jak odblokować konto."
+      send_paranoid_instructions: "Jeżeli Twoje konto istnieje, otrzymasz wiadomość emial z instrukcją jak odblokować konto."
+      unlocked: "Twoje konto została pomyślnie odblokowane. Zaloguj się by kontynuować."
+  errors:
+    messages:
+      already_confirmed: "już został aktywowany, proszę spróbować się zalogować."
+      confirmation_period_expired: "musi zostać potwierdzony w czasie %{period}, wyślij zapytanie o nowy."
+      expired: "stracił ważność, wyślij zapytanie o nowy."
+      not_found: "nie znaleziono"
+      not_locked: "nie był zablokowany"
+      not_saved:
+        one: "Użytkownik nie został zapisany z powodu błędu:"
+        other: "Użytkownik nie został zapisany z powodu następujących błędów:"
+
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              blank: " - pole nie może być puste"
+            email:
+              blank: " - pole nie może być puste"
+            displayname:
+              blank: " - pole nie może być puste"
+              too_short: " podany login jest za krótki"
+            current_password:
+              blank: "wpisz aktualne hasło"
+            password_confirmation:
+              confirmation: "Hasła nie są takie same"
+            firstname:
+              blank: " - pole nie może być puste"
+              too_short: " podane imię jest za krótkie"
+            lastname:
+              blank: " - pole nie może być puste"
+              too_short: " podany login jest za krótki"
+        subject:
+          attributes:
+              name:
+                blank: " - pole nie może być puste"
+                too_short: " - podana nazwa jest za krótka"

@@ -31,10 +31,14 @@ class BeastsController < ApplicationController
     @beast = Beast.new(beast_params)
     @beast.rating = 0
 
+    unless @beast.image.attached?
+      @beast.image.attach(io: File.open(Rails.root.join('av.jpg')), filename: 'av.jpg')
+    end
+
 
     respond_to do |format|
       if @beast.save
-        format.html { redirect_to @beast, notice: 'Beast was successfully created.' }
+        format.html { redirect_to @beast, notice: 'Bestia została dodana do Bestiariusza' }
         format.json { render :show, status: :created, location: @beast }
       else
         format.html { render :new }
@@ -48,7 +52,7 @@ class BeastsController < ApplicationController
   def update
     respond_to do |format|
       if @beast.update(beast_params)
-        format.html { redirect_to @beast, notice: 'Beast was successfully updated.' }
+        format.html { redirect_to @beast, notice: 'Dane bestii zostały zaktualizowane' }
         format.json { render :show, status: :ok, location: @beast }
       else
         format.html { render :edit }
@@ -62,7 +66,7 @@ class BeastsController < ApplicationController
   def destroy
     @beast.destroy
     respond_to do |format|
-      format.html { redirect_to beasts_url, notice: 'Beast was successfully destroyed.' }
+      format.html { redirect_to beasts_url, notice: 'Bestia została usunięta' }
       format.json { head :no_content }
     end
   end

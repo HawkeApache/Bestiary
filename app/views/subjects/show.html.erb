@@ -1,41 +1,55 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @subject.name %>
-</p>
-
-<p>
-  <strong>Ects:</strong>
-  <%= @subject.ects %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @subject.description %>
-</p>
-
-<p>
-  <strong>Rating:</strong>
-  <%= @subject.rating %>
-</p>
-
-
-<h1>FORM DO KOMENTAZRY</h1>
-
-<%= simple_form_for([@subject, @subject.comments.new]) do |f| %>
-  <%= f.input :message%>
-  <%= f.input :rate%>
-  <%= f.submit :submit%>
+<% if notice %>
+  <div class="alert alert-success">
+    <div class="notice">
+      <%= notice %>
+    </div>
+  </div>
 <% end %>
 
 
-<h1>KOMENTARZE</h1>
-<div>
-  <%= render partial: "/comment", collection: @subject.comments %>
+<div class="jumbotron">
+  <h1 class="display-3"><%= @subject.name %></h1>
+  <p class="lead"><%= @subject.ects %> ECTS, Ocena użytkowników: <%= @subject.rating %></p>
+  <hr class="my-4">
+  <h4>Prowadzący</h4>
+  <% @subject.beasts.each do |beast| %>
+    <p class="badge badge-secondary">
+      <%= link_to "#{beast.degree} #{beast.firstname} #{beast.lastname}", "/beasts/#{beast.id.to_s}" %>
+    </p>
+  <% end %>
+  <hr class="my-4">
+  <p><%= @subject.description %></p>
 </div>
 
-<% if current_user.role == "admin" %>
-  <%= link_to 'Edit', edit_subject_path(@subject) %> |
+
+
+<h2 class="display-3">Opinie</h2>
+<h4 class="display-5"> Dodaj swoją opinię </h4>
+<%= simple_form_for([@subject, @subject.comments.new]) do |f| %>
+
+  <div class="row">
+    <div class="form-group col-md-1">
+      <%= f.label :ocena %><br/>
+      <%= f.number_field :rate, autofocus: true, class: "form-control", in: 1.0..10.0 %>
+    </div>
+
+    <div class="form-group col-md-11">
+      <%= f.label :Opinia %><br/>
+      <%= f.text_field :message, autofocus: true, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Dodaj" %>
+  </div>
 <% end %>
-<%= link_to 'Back', subjects_path %>
+<div>
+  <%= render partial: "/comment", collection: @subject.comments.reverse %>
+</div>
+
+<hr class="my-4">
+
+<% if can? :update, @subject %>
+  <%= link_to 'Edytuj', edit_subject_path(@subject) %> |
+<% end %>
+<%= link_to 'Powrót', subjects_path %>

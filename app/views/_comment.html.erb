@@ -1,12 +1,20 @@
 <% if comment.id %>
-<div>
-  <p><%= comment.message %></p>
-  <h6><%= comment.rate %></h6>
+  <div class="list-group-item custom-padding list-group-item-action flex-column align-items-start">
+
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1"> <%= comment.rate %></h5>
+      <small class="text-muted">  <%= comment.user.displayname %></small>
+    </div>
+    <p class="mb-1"><%= comment.message %></p>
+
+    <% if can? :manage, comment %>
+      <div class="d-flex w-100 justify-content-end">
+          <%= link_to 'Edytuj', edit_comment_path(comment) %> &nbsp
+          <%= link_to 'Usuń', comment, method: :delete, data: {confirm: 'Na pewno chcesz usunąć ten komentarz?'} %>
+      </div>
+    <% end %>
 
 
-  <% if comment.user_id == current_user.id or current_user.role == "admin" %>
-    <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-    <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  <% end %>
-</div>
+  </div>
+
 <% end %>
