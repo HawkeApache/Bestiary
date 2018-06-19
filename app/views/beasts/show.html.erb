@@ -19,7 +19,9 @@
     <% end %>
     <div class="beast-info">
       <h1 class="display-3 align-content-center"><%= @beast.degree %> <%= @beast.firstname %> <%= @beast.lastname %></h1>
-      <h1>( <%= @beast.pseudo %> )</h1>
+      <% if @beast.pseudo != "" %>
+        <h1>( <%=  @beast.pseudo  %> )</h1>
+      <%  end %>
       <h4>Ocena użytkowników: <%= @beast.rating.round(2) %></h4>
     </div>
   </div>
