@@ -1,5 +1,5 @@
 # Bestiary 
-###App for rating lecturers and subjects on University
+### App for rating lecturers and subjects on University
 
 ## Dependencies
 * Ruby v2.5.0
