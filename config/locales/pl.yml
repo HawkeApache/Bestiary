@@ -153,3 +153,5 @@ pl:
               name:
                 blank: " - pole nie może być puste"
                 too_short: " - podana nazwa jest za krótka"
+      messages:
+        record_invalid: ""
