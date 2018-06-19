@@ -1,24 +1,18 @@
-# README
+# Bestiary 
+###App for rating lecturers and subjects on University
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Dependencies
+* Ruby v2.5.0
+* Rails v5.2.0
 
-Things you may want to cover:
+## Run project
+```
+$ bundle install
+$ rake db:migrate
+$ rails s
+```
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Run tests
+```
+$ cucumber
+```
